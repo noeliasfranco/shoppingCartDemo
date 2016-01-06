@@ -1,0 +1,38 @@
+<p>
+	Search Product: <input ng-model="search">
+</p>
+
+<table class="table table-bordered">
+	<tr class="well">
+		<td class="tdRight" colspan="5" >
+			<a href="javascript:;" ui-sref="cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+				<i class="icon-shopping-cart" />
+				<b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+			</a>
+		</td>
+	</tr>
+	<tr ng-repeat="product in store.products | orderBy:'name' | filter:search" >
+		<td class="tdCenter"><img ng-src="assets/img/products/{{product.sku | lowercase}}.jpg" alt="{{product.name}}" style="max-width: 60%; max-height:13%;"/></td>
+		<td>
+			<a href="javascript:;" ui-sref="product({productSku: product.sku})"><b>{{product.name}}</b></a><br />
+			{{product.description}}
+		</td>
+		<td class="tdRight">
+			{{product.price | currency}}
+		</td>
+		<td class="tdRight">
+			Stock: {{product.stock}}
+		</td>
+		<td class="tdCenter">
+			<button ng-disabled="product.stock==0" type="button" class="btn btn-primary" ng-click="cart.addItem(product, product.sku, product.name, product.price, 1)">Buy it now</button>
+		</td>
+	</tr>
+	<tr class="well">
+		<td class="tdRight" colspan="5">
+			<a href="javascript:;" ui-sref="cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+				<i class="icon-shopping-cart" />
+				<b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+			</a>
+		</td>
+	</tr>
+</table>

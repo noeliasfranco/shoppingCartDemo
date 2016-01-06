@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="MyStore">
+<head>
+  <title ng-bind="pageTitle"></title>
+  <base href="/">
+
+  <!-- font awesome from BootstrapCDN -->
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+  <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+  <link rel="stylesheet" type="text/css" href="./<%= file %>" /><% }); %>
+
+</head>
+<body>
+  <div class="container">
+    <h1 class="well" >
+        Basic Shopping Cart
+    </h1>        
+  </div>
+  <div class="container" ui-view="main"></div>
+  
+  <!-- compiled JavaScript -->
+  <% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="./<%= file %>"></script>
+  <% }); %>
+</body>
+</html>
